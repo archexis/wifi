@@ -1,0 +1,14 @@
+user_pref("network.trr.mode", 5);
+user_pref("network.captive-portal-service.enabled", false);
+user_pref("network.connectivity-service.enabled", false);
+user_pref("network.dns.disableipv6", true);
+user_pref("network.prefetch-next", false);
+user_pref("network.predictor.enabled", false);
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("toolkit.telemetry.enabled", false);
+user_pref("browser.safebrowsing.enabled", false);
+user_pref("general.useragent.override", "mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/126.0.0.0 safari/537.36 edg/126.0.0.0");
+user_pref("browser.startup.homepage", "http://www.msftconnecttest.com/redirect");
+user_pref("browser.newtabpage.enabled", false);
+user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.sessionstore.restore_on_demand", true);
