@@ -11,7 +11,7 @@ llmnr=0
 [wifi]
 mode=infrastructure
 mac-address=a0:29:42:8c:8e:ad
-mac-address-randomization=never
+mac-address-randomization=default
 powersave=2
 
 [wifi-security]

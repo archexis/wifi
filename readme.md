@@ -15,8 +15,23 @@ scripts/reset.sh            - kill noise reconnect ncsi verify
 
 usage
 -----
+# 1. install system configs (dhclient + nm dhcp client)
 sudo ./scripts/apply.sh
-nmcli con mod windows-profile wifi.ssid "YOUR_SSID" wifi-sec.psk "YOUR_PSK"
+
+# 2. create Guest profile with windows fingerprint + MAC randomization
+nmcli con add type wifi con-name windows-profile ifname wlan0 ssid Guest
+nmcli con mod windows-profile wifi-sec.key-mgmt wpa-psk
+nmcli con mod windows-profile wifi-sec.psk "YOUR_PSK"
+nmcli con mod windows-profile 802-11-wireless.mac-address a0:29:42:8c:8e:ad
+nmcli con mod windows-profile 802-11-wireless.mac-address-randomization default
+nmcli con mod windows-profile ipv4.method auto
+nmcli con mod windows-profile ipv4.dhcp-hostname desktop-369dn1d
+nmcli con mod windows-profile ipv4.dhcp-client-id 01:a0:29:42:8c:8e:ad
+nmcli con mod windows-profile ipv4.dhcp-vendor-class-identifier "msft 5.0"
+nmcli con mod windows-profile ipv6.method disabled
+nmcli con mod windows-profile connection.autoconnect yes
+
+# 3. connect and verify
 nmcli con up windows-profile
 ./scripts/reset.sh
 
@@ -35,3 +50,5 @@ notes
 mac a0:29:42:8c:8e:ad must match host hardware
 dhcp request list matches windows 10/11 option 55
 msftconnecttest ncsi 302 confirms ise windows profile
+mac-address-randomization=default required (never breaks DHCP on some APs)
+guest network: IP 10.22.48.0/22, GW 10.22.48.1, DNS 10.22.5.30
